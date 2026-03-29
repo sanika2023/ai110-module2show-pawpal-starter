@@ -17,7 +17,7 @@ For tasks, there will be different methods for the type of tasks that the app pe
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
 
-Yes, this design was changed a lot suring the implementation. I asked Copilot on how the UML design can be improved. It added more necessary entities to the design. These were the entities/classes that I ended up with: Owner, Pet, Schedule, Task, ScheduleEntry.
+Yes, this design was changed a lot suring the implementation. I asked Copilot on how the UML design can be improved. It added more necessary entities to the design. These were the entities/classes that I ended up with: Owner, Pet, Schedule, Task, ScheduleEntry. These were changed a bit later in the next step of directions.
 
 ---
 
