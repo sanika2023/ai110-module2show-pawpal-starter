@@ -7,10 +7,17 @@
 - Briefly describe your initial UML design.
 - What classes did you include, and what responsibilities did you assign to each?
 
+For the initial UML design, I am thinking of including 3 entities according to Object oriented programming. The 3 classes may be owner, pet, and tasks. 
+Owner may have these responsibilities: using the tacking app to track tasks related to pet care. It will have attributes like name, list of pets, etc.
+Pet may have these attributes: name, birthday, pet attributes, owner, etc.
+For tasks, there will be different methods for the type of tasks that the app performs for the user.
+
 **b. Design changes**
 
 - Did your design change during implementation?
 - If yes, describe at least one change and why you made it.
+
+Yes, this design was changed a lot suring the implementation. I asked Copilot on how the UML design can be improved. It added more necessary entities to the design. These were the entities/classes that I ended up with: Owner, Pet, Schedule, Task, ScheduleEntry.
 
 ---
 
