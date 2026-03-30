@@ -28,6 +28,10 @@ Yes, this design was changed a lot suring the implementation. I asked Copilot on
 - What constraints does your scheduler consider (for example: time, priority, preferences)?
 - How did you decide which constraints mattered most?
 
+The scheduler considers several key constraints: owner available time per day (capacity validation), task priority levels, preferred time windows for tasks, recurrence patterns (daily/weekly), and time conflicts between overlapping tasks. It also considers pet-specific constraints like ensuring tasks are assigned to the correct pet.
+
+I decided which constraints mattered most by analyzing the core scenario: a busy pet owner managing multiple pets with limited time. Capacity (available time) was prioritized as the fundamental limit, followed by preferred time windows to respect established pet care routines, then priority levels for urgent tasks, and finally conflict detection to prevent impossible schedules. This hierarchy ensures the system is practical for real pet owners rather than just theoretically optimal.
+
 **b. Tradeoffs**
 
 - Describe one tradeoff your scheduler makes.
