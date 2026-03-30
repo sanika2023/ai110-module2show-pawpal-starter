@@ -33,6 +33,8 @@ Yes, this design was changed a lot suring the implementation. I asked Copilot on
 - Describe one tradeoff your scheduler makes.
 - Why is that tradeoff reasonable for this scenario?
 
+The scheduler detects and warns about conflicting task times rather than automatically preventing or rescheduling them. This allows users to maintain their preferred time windows for tasks while being informed of potential issues, giving them the flexibility to decide how to resolve conflicts based on their specific circumstances rather than having the system make assumptions about priorities.
+
 ---
 
 ## 3. AI Collaboration
