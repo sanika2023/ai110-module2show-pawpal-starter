@@ -44,10 +44,34 @@ The scheduler detects and warns about conflicting task times rather than automat
 - How did you use AI tools during this project (for example: design brainstorming, debugging, refactoring)?
 - What kinds of prompts or questions were most helpful?
 
+I used VS Code Copilot extensively throughout the project for design brainstorming, code generation, testing, and documentation. For design brainstorming, I asked Copilot to analyze my pawpal_system.py and suggest UML diagram updates. For code generation, Copilot helped write comprehensive test suites and UI enhancements. For testing, I used Copilot to generate edge case scenarios and verify test coverage. For documentation, Copilot assisted in drafting professional README sections and feature descriptions.
+
+The most helpful prompts were specific and contextual, such as "#codebase What are the most important edge cases to test for a pet scheduler?" and "Based on my final implementation, what updates should I make to my initial UML diagram?" These allowed Copilot to provide targeted, implementation-aware suggestions rather than generic advice.
+
 **b. Judgment and verification**
 
 - Describe one moment where you did not accept an AI suggestion as-is.
 - How did you evaluate or verify what the AI suggested?
+
+When Copilot suggested adding complex dependency injection patterns to the Scheduler class, I rejected it to keep the system design clean and maintainable. The suggestion would have made the code more flexible but also more complex for a relatively simple pet scheduling system. I evaluated it by considering the project's scope - this is a demonstration project, not a large-scale enterprise system, so simplicity and readability were more important than maximum extensibility. I verified by running the existing tests to ensure the simpler design still worked correctly.
+
+**c. AI Strategy Reflection**
+
+- Which Copilot features were most effective for building your scheduler?
+
+The most effective Copilot features were the inline code suggestions for rapid prototyping and the chat interface for complex multi-step tasks. Inline suggestions were great for quickly implementing methods like conflict detection and recurrence logic, while the chat allowed me to break down complex tasks like "expand the test suite with 14 comprehensive tests" into manageable steps.
+
+- Give one example of an AI suggestion you rejected or modified to keep your system design clean.
+
+I modified Copilot's suggestion to use a more complex state machine for task status transitions. Instead of implementing a full state machine with transitions, I kept the simple enum-based approach (PENDING, DONE, SKIPPED) to maintain clarity. The AI suggested adding transition validation methods, but I simplified it to direct status assignment to avoid over-engineering for this use case.
+
+- How did using separate chat sessions for different phases help you stay organized?
+
+Using separate chat sessions for different phases (design, implementation, testing, documentation) helped maintain focus and context. Each session had a clear purpose - one for UML updates, another for test expansion, a third for UI enhancements. This prevented context switching confusion and allowed me to reference previous work without cluttering the conversation. It also made it easier to iterate on specific components without affecting others.
+
+- Summarize what you learned about being the "lead architect" when collaborating with powerful AI tools.
+
+As the lead architect, I learned that AI tools excel at execution but require human guidance for design decisions. I had to clearly define the system boundaries, make trade-off decisions (like prioritizing simplicity over flexibility), and verify AI suggestions against project requirements. The AI could generate code quickly, but I needed to ensure it aligned with the overall architecture and maintained code quality. Ultimately, the human architect provides the vision and constraints, while AI handles the implementation details efficiently.
 
 ---
 
@@ -58,10 +82,14 @@ The scheduler detects and warns about conflicting task times rather than automat
 - What behaviors did you test?
 - Why were these tests important?
 
+I tested 14 comprehensive behaviors across four categories: Task Completion (status changes and task addition), Sorting Correctness (chronological ordering by time windows), Recurrence Logic (automatic creation of daily/weekly tasks), and Conflict Detection (overlapping time detection and warnings). These tests were important because they verify the core scheduling algorithms that make PawPal+ "smart" - without proper sorting, conflicts, and recurrence, the system would just be a basic task list rather than an intelligent scheduler.
+
 **b. Confidence**
 
 - How confident are you that your scheduler works correctly?
 - What edge cases would you test next if you had more time?
+
+I am highly confident (5/5 stars) that the scheduler works correctly - all 14 tests pass, and the system handles the main use cases reliably. If I had more time, I would test edge cases like: tasks spanning multiple days, owner capacity changes mid-schedule, concurrent multi-user access, and integration with external calendars. I would also add performance tests for large pet/task lists and stress tests for rapid task completion.
 
 ---
 
@@ -71,10 +99,16 @@ The scheduler detects and warns about conflicting task times rather than automat
 
 - What part of this project are you most satisfied with?
 
+I'm most satisfied with how the system evolved from a basic task tracker to a sophisticated scheduler with conflict detection, recurrence, and intelligent time management. The modular design with the Scheduler "brain" class made it easy to add features incrementally while maintaining clean separation of concerns.
+
 **b. What you would improve**
 
 - If you had another iteration, what would you improve or redesign?
 
+In another iteration, I would improve the UI with better mobile responsiveness and add data persistence (database integration) so schedules aren't lost on app restart. I would also redesign the recurrence system to support more flexible patterns (like "every 3 days" or "weekdays only") and add notification features for upcoming tasks.
+
 **c. Key takeaway**
 
 - What is one important thing you learned about designing systems or working with AI on this project?
+
+The key takeaway is that good system design requires balancing technical elegance with practical usability. While AI can generate complex solutions quickly, the architect must ensure they serve the user's actual needs rather than just demonstrating technical prowess. I learned to start simple, validate core functionality, then layer on advanced features - a principle that applies equally to system design and AI collaboration.

@@ -1,0 +1,106 @@
+classDiagram
+    class TaskStatus {
+        <<enum>>
+        PENDING
+        DONE
+        SKIPPED
+    }
+
+    class Owner {
+        - name: str
+        - available_time_per_day: int
+        - preferences: Dict[str, Any]
+        - pets: List[Pet]
+        + add_pet(pet: Pet): void
+        + remove_pet(pet: Pet): void
+        + add_task(task: Task): void
+        + plan_daily_schedule(date: date): Schedule
+        + explain_schedule(schedule: Schedule): str
+        + can_fit_tasks(target_date: date): bool
+    }
+
+    class Pet {
+        - name: str
+        - type: str
+        - age: int
+        - needs: Dict[str, Any]
+        - owner: Owner
+        - tasks: List[Task]
+        + add_task(task: Task): void
+        + get_pending_tasks(date: date): List[Task]
+        + total_required_time(date: date): int
+    }
+
+    class Task {
+        - id: str
+        - name: str
+        - type: str
+        - duration_minutes: int
+        - priority: int
+        - deadline: Optional[datetime]
+        - recurrence: Optional[str]
+        - preferred_window: Optional[Tuple[time, time]]
+        - status: TaskStatus
+        - pet: Pet
+        + mark_done(): void
+        + reschedule(new_time: time): void
+        + is_due(date: date): bool
+        + score_for_planning(preferences: Dict, constraints: Dict): float
+        - _create_next_recurring_task(): void
+    }
+
+    class ScheduleEntry {
+        <<dataclass>>
+        - task: Task
+        - start_time: time
+        - end_time: time
+    }
+
+    class ConflictWarning {
+        <<dataclass>>
+        - severity: str
+        - pet_names: List[str]
+        - tasks: Tuple[Task, Task]
+        - time_overlap: str
+        - message: str
+    }
+
+    class Scheduler {
+        + retrieve_tasks(owner: Owner, date: date): List[Task]
+        + organize_tasks(tasks: List[Task], preferences: Dict): List[Task]
+        + filter_tasks(tasks: List[Task], pet_name?: str, status?: TaskStatus, task_type?: str): List[Task]
+        + sort_by_time(tasks: List[Task]): List[Task]
+        + detect_conflicts_with_warnings(entries: List[ScheduleEntry]): Dict
+        + generate_schedule(owner: Owner, date: date): Schedule
+        + explain_schedule(schedule: Schedule): str
+        - _time_overlaps(entry1: ScheduleEntry, entry2: ScheduleEntry): bool
+        - _generate_conflict_message(task1: Task, task2: Task, overlap_info: bool): str
+    }
+
+    class Schedule {
+        - date: date
+        - entries: List[ScheduleEntry]
+        - total_duration: int
+        - confidence_explanation: str
+        - conflict_info: Dict
+        + add_entry(task: Task, start: time, end: time): void
+        + is_over_capacity(max_minutes: int): bool
+        + has_conflicts(): bool
+        + get_conflict_summary(): str
+        + format_for_ui(): str
+    }
+
+    Owner "1" --> "1..*" Pet: owns
+    Pet "1" --> "0..*" Task: has
+    Task "1" --> "1" Pet: belongs_to
+    Task "1" --> "1" TaskStatus: has_status
+    
+    Scheduler "1" --> "0..*" Task: retrieves
+    Scheduler "1" --> "0..*" ScheduleEntry: creates
+    Scheduler "1" --> "0..*" ConflictWarning: detects
+    Scheduler "1" --> "1" Schedule: generates
+    
+    Schedule "1" --> "0..*" ScheduleEntry: contains
+    Schedule "0..1" --> "0..*" ConflictWarning: has_conflicts_from
+    
+    ScheduleEntry "1" --> "1" Task: schedules

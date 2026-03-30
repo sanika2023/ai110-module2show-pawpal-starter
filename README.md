@@ -22,6 +22,64 @@ Your final app should:
 - Display the plan clearly (and ideally explain the reasoning)
 - Include tests for the most important scheduling behaviors
 
+## Features
+
+### 🐾 Intelligent Daily Scheduling
+
+PawPal+ automatically generates optimized daily schedules for all your pets based on priority and your time availability. The system intelligently sequences tasks throughout the day, respecting your preferred time windows while ensuring nothing gets missed.
+
+### ⏰ Time-Based Task Sorting
+
+Tasks are automatically organized by their preferred start times (in HH:MM format), ensuring your schedule flows chronologically. Tasks without a preferred window are intelligently placed at the end of the day, and all tasks are secondarily prioritized by urgency level for optimal results.
+
+### ⚠️ Real-Time Conflict Detection & Warnings
+
+Advanced conflict detection identifies overlapping task schedules in real-time, preventing impossible scheduling situations. The system differentiates between critical conflicts (same pet with overlapping tasks) and capacity issues (owner attempting multiple pets simultaneously), providing specific, actionable warnings with task details and duration to guide you toward resolution.
+
+### 🔄 Recurring Task Management
+
+Daily and weekly recurring tasks automatically generate new instances when marked complete, with deadlines precisely calculated based on the recurrence pattern:
+- **Daily tasks**: Next instance created 24 hours after completion
+- **Weekly tasks**: Next instance created 7 days after completion
+
+All task attributes and time preferences are preserved, eliminating tedious re-entry and ensuring consistent care routines.
+
+### 🔍 Flexible Task Filtering & Organization
+
+Organize and view your tasks with multi-criteria filtering by:
+- **Pet name** – Focus on individual pet needs
+- **Status** – View pending, completed, or skipped tasks
+- **Task type** – Isolate feeding, walks, medication, grooming, enrichment, or custom types
+
+### 📊 Capacity Validation
+
+Automatically validates whether all pending tasks fit within your available daily time limit. Receives clear warnings when your schedule is overbooked, helping you make informed decisions about which tasks are realistic for each day.
+
+### 💡 Schedule Explanations
+
+Every generated schedule includes detailed reasoning explaining:
+- How many tasks were scheduled
+- Which preferences were respected
+- Any capacity concerns or conflicts
+- Recommendations for schedule adjustments
+
+### 🎯 Preferred Time Windows
+
+Define when specific tasks should ideally occur (e.g., "feeding at 8:00 AM"), and the scheduler respects your preferences while balancing all constraints. Perfect for maintaining consistent routines your pets depend on.
+
+## 📸 Demo
+
+Here's a screenshot of the PawPal+ Streamlit app in action:
+
+![PawPal+ App Screenshot](screenshot.png)
+
+The interface allows you to:
+- Set up owners and pets with their details
+- Add tasks with priorities, durations, and recurrence options
+- Generate intelligent schedules with conflict detection
+- View organized task lists with filtering and sorting
+- Mark tasks complete to trigger recurring task creation
+
 ## Getting started
 
 ### Setup
